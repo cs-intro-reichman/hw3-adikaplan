@@ -25,43 +25,93 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		for(int i=1; i <= x2 ; i++){
+			x1++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		for(int i=x2; i > 0 ; i--){
+			x1--;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if ( x1 ==0 || x2 == 0){
+			return 0;
+		}else if( x1 == 1){
+			return x2;
+		}else if(x2 == 1){
+			return x1;
+		}
+		int result=0;
+		for(int i =1; i <= x2 ; i++){
+			plus(x1,x1);
+			result = plus (result ,x1 );
+		} return result;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		if(x == 0){
+			return 0;
+		}else if (n == 0){
+			return 1;
+		}
+		int result=1;
+		for(int i =1 ; i <= n ; i++){
+			result = times(result , x);
+		}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if ( x1 < x2){
+			return 0;
+		}else if(x1 == x2){
+			return 1;
+		}else if(x2 == 1){
+			return x1;
+		}
+		int z = 2;
+		while(z <= x1){
+			if(times(x2 , z) == x1){
+				return z;
+			}else if(times(x2 , z) < x1){
+				z = plus( z, 1);
+			}else if (times(x2 , z) > x1){
+				z = minus(z,1);
+				return z;
+			}
+		}
+		return z ;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int remainder = 0;
+		if (x1 ==0){
+			remainder = 0;
+		}
+		if (times(x2, div (x1 , x2)) != x1 ){
+			remainder = minus(x1 , times(div (x1 , x2), x2));
+		}
+		return remainder;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int g = 1;
+		int sqrtX = pow(g,2) -x;
+		while(sqrtX <0){
+			g = plus(g,1);
+		}
+		return  g;
 	}	  	  
 }
+//problem with sqrt***need to solve adi
