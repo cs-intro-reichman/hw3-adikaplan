@@ -64,7 +64,10 @@ public class Algebra {
 		for(int i =1; i <= x2 ; i++){
 			plus(x1,x1);
 			result = plus (result ,x1 );
-		}return result;
+		}if(x1<0 && x2<0){
+			result = times(-1,result);
+		}
+		return result;
 	}
 
 	// Returns x^n (for n >= 0)
@@ -77,6 +80,11 @@ public class Algebra {
 		int result=1;
 		for(int i =1 ; i <= n ; i++){
 			result = times(result , x);
+		}
+		if(x<0 && mod(n,2)!=0){
+			result = times(-1,result);
+		}else if(x<0 && mod(n,2)==0){
+			return result;
 		}
 		return result;
 	}
@@ -101,6 +109,9 @@ public class Algebra {
 				return z;
 			}
 		}
+		if(x1<0 || x2<0){
+			z = times(-1,z);
+		}
 		return z ;
 	}
 
@@ -120,6 +131,9 @@ public class Algebra {
 	public static int sqrt(int x) {
 		int g = 1;
 		int sqrtX = pow(g,2) -x;
+		if(x==0){
+			return 0;
+		}
 		while(sqrtX <0){
 			g = plus(g,1);
 			sqrtX = pow(g,2) -x;
