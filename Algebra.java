@@ -129,15 +129,13 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int g = 1;
-		int sqrtX = pow(g,2) -x;
+		int g = 0;
 		if(x==0){
 			return 0;
 		}
-		while(sqrtX <0){
+		while(times(g , g) <= x){
 			g = plus(g,1);
-			sqrtX = pow(g,2) -x;
 		}
-		return  g;
+		return  minus(g,1);
 	}	  	  
 }
