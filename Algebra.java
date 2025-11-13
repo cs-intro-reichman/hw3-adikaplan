@@ -25,16 +25,28 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		for(int i=1; i <= x2 ; i++){
-			x1++;
+		if(x2<0){
+		for(int i=x2; i < 0 ; i++){
+			x1--;
+		}
+	    }else{
+			for(int i=1; i <= x2 ; i++){
+				x1++;
+			}
 		}
 		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		for(int i=x2; i > 0 ; i--){
-			x1--;
+		if(x2<0){
+		for(int i=x2; i < 0 ; i++){
+			x1++;
+		}
+	    }else{
+			for(int i=x2; i < 0 ; i++){
+				x1--;
+			}
 		}
 		return x1;
 	}
@@ -52,7 +64,7 @@ public class Algebra {
 		for(int i =1; i <= x2 ; i++){
 			plus(x1,x1);
 			result = plus (result ,x1 );
-		} return result;
+		}return result;
 	}
 
 	// Returns x^n (for n >= 0)
@@ -98,7 +110,7 @@ public class Algebra {
 		if (x1 ==0){
 			remainder = 0;
 		}
-		if (times(x2, div (x1 , x2)) != x1 ){
+		else if (times(x2, div (x1 , x2)) != x1 ){
 			remainder = minus(x1 , times(div (x1 , x2), x2));
 		}
 		return remainder;
@@ -115,4 +127,3 @@ public class Algebra {
 		return  g;
 	}	  	  
 }
-//problem with sqrt***need to solve adi
