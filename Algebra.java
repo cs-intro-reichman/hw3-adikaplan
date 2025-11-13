@@ -110,6 +110,7 @@ public class Algebra {
 		int sqrtX = pow(g,2) -x;
 		while(sqrtX <0){
 			g = plus(g,1);
+			sqrtX = pow(g,2) -x;
 		}
 		return  g;
 	}	  	  
