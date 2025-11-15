@@ -60,12 +60,16 @@ public class Algebra {
 		}else if(x2 == 1){
 			return x1;
 		}
-		int result=0;
+		boolean resultSign = (x1 >0 && x2 >0) || (x1<0 && x2 <0);
+		if(x1<0){
+			x1 = minus(0,x1);
+		}if(x2<0){
+			x2 = minus(0,x2);
+		}int result=0;
 		for(int i =1; i <= x2 ; i++){
-			plus(x1,x1);
-			result = plus (result ,x1 );
-		}if(x1<0 && x2<0){
-			result = times(-1,result);
+			result = plus (result , x1);
+		}if(resultSign == false){
+			result = minus(0,result);
 		}
 		return result;
 	}
@@ -81,38 +85,45 @@ public class Algebra {
 		for(int i =1 ; i <= n ; i++){
 			result = times(result , x);
 		}
-		if(x<0 && mod(n,2)!=0){
-			result = times(-1,result);
-		}else if(x<0 && mod(n,2)==0){
-			return result;
-		}
 		return result;
 	}
-
+	
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		if ( x1 < x2){
+		boolean negative = false;
+		if((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)){
+			negative = true;
+		} 
+		if(x1 < 0){
+			x1 = minus(0,x1);
+		}if(x2 < 0){
+			x2 = minus(0,x2);
+		}if ( x1 < x2){
 			return 0;
-		}else if(x1 == x2){
-			return 1;
 		}else if(x2 == 1){
 			return x1;
 		}
-		int z = 2;
-		while(z <= x1){
-			if(times(x2 , z) == x1){
-				return z;
-			}else if(times(x2 , z) < x1){
-				z = plus( z, 1);
-			}else if (times(x2 , z) > x1){
-				z = minus(z,1);
-				return z;
+		int result = 1;
+		while(result < x1){
+			if(times(x2 , result) == x1){
+				if(negative == true){
+					return minus(0,result);
+				}
+				return result;
+			}else if(times(x2 , result) < x1){
+				result = plus( result, 1);
+			}else if (times(x2 , result) > x1){
+				result = minus(result,1);
+				if(negative == true){
+					return minus(0,result);
+				}
+				return result;
 			}
 		}
-		if(x1<0 || x2<0){
-			z = times(-1,z);
-		}
-		return z ;
+		if(negative == true){
+					return minus(0,result);
+				}
+		return result ;
 	}
 
 	// Returns x1 % x2
@@ -129,13 +140,18 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int g = 0;
+		int g = 1;
 		if(x==0){
 			return 0;
+		}if(x<0){
+			return -1;
 		}
-		while(times(g , g) <= x){
+		while(times(g , g) < x){
 			g = plus(g,1);
 		}
-		return  minus(g,1);
+		if( times(g,g)>x){
+			g = minus(g,1);
+		}
+		return  g;
 	}	  	  
 }
