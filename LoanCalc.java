@@ -50,7 +50,7 @@ public class LoanCalc {
 			f = endBalance(loan,rate,n,g);
 			iterationCounter++;
 		}
-		return (double) Math.round(g - epsilon);
+		return (double) Math.floor(g);
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -62,7 +62,7 @@ public class LoanCalc {
 		double L = loan/n ;
 		double H = loan*1.1;
 		double g=(L + H)/2;;
-		iterationCounter =1;
+		iterationCounter =0;
 		while((H - L) > epsilon){
 
 			double f_g = endBalance(loan,rate,n,g);
@@ -74,6 +74,6 @@ public class LoanCalc {
 			g = (L + H)/2;
 			iterationCounter++;
 		}
-		return (double) Math.round(g);
+		return (double) Math.floor(g);
     }
 }
