@@ -25,43 +25,133 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if(x2<0){
+		for(int i=x2; i < 0 ; i++){
+			x1--;
+		}
+	    }else{
+			for(int i=1; i <= x2 ; i++){
+				x1++;
+			}
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if(x2<0){
+		for(int i=0; i > x2 ; i--){
+			x1++;
+		}
+	    }else{
+			for(int i=0; i < x2 ; i++){
+				x1--;
+			}
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if ( x1 ==0 || x2 == 0){
+			return 0;
+		}else if( x1 == 1){
+			return x2;
+		}else if(x2 == 1){
+			return x1;
+		}
+		boolean resultSign = (x1 >0 && x2 >0) || (x1<0 && x2 <0);
+		if(x1<0){
+			x1 = minus(0,x1);
+		}if(x2<0){
+			x2 = minus(0,x2);
+		}int result=0;
+		for(int i =1; i <= x2 ; i++){
+			result = plus (result , x1);
+		}if(resultSign == false){
+			result = minus(0,result);
+		}
+		return result;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		if(x == 0){
+			return 0;
+		}else if (n == 0){
+			return 1;
+		}
+		int result=1;
+		for(int i =1 ; i <= n ; i++){
+			result = times(result , x);
+		}
+		return result;
 	}
-
+	
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		boolean negative = false;
+		if((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)){
+			negative = true;
+		} 
+		if(x1 < 0){
+			x1 = minus(0,x1);
+		}if(x2 < 0){
+			x2 = minus(0,x2);
+		}if ( x1 < x2){
+			return 0;
+		}else if(x2 == 1){
+			return x1;
+		}
+		int result = 1;
+		while(result < x1){
+			if(times(x2 , result) == x1){
+				if(negative == true){
+					return minus(0,result);
+				}
+				return result;
+			}else if(times(x2 , result) < x1){
+				result = plus( result, 1);
+			}else if (times(x2 , result) > x1){
+				result = minus(result,1);
+				if(negative == true){
+					return minus(0,result);
+				}
+				return result;
+			}
+		}
+		if(negative == true){
+					return minus(0,result);
+				}
+		return result ;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int remainder = 0;
+		if (x1 ==0){
+			remainder = 0;
+		}
+		else if (times(x2, div (x1 , x2)) != x1 ){
+			remainder = minus(x1 , times(div (x1 , x2), x2));
+		}
+		return remainder;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int g = 1;
+		if(x==0){
+			return 0;
+		}if(x<0){
+			return -1;
+		}
+		while(times(g , g) < x){
+			g = plus(g,1);
+		}
+		if( times(g,g)>x){
+			g = minus(g,1);
+		}
+		return  g;
 	}	  	  
 }
