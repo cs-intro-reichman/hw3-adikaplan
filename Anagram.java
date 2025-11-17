@@ -73,10 +73,10 @@ public class Anagram {
 	public static String randomAnagram(String str) {
 		String strRandom = "";
 		String copyStr = str;
-		for(int i = str.length() ;  i > 0; i--){
-			int indexChar =(int)(Math.random()* str.length());
+		while(copyStr.length() > 0){
+			int indexChar =(int)(Math.random()* copyStr.length());
 			strRandom = strRandom + copyStr.charAt(indexChar);
-			if(indexChar == copyStr.length()){
+			if(indexChar == copyStr.length()-1){
 				copyStr = copyStr.substring(0,indexChar);
 			}else{
 				copyStr = copyStr.substring(0,indexChar) + copyStr.substring(indexChar + 1);
