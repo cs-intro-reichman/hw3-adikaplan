@@ -76,7 +76,11 @@ public class Anagram {
 		for(int i = str.length() ;  i > 0; i--){
 			int indexChar =(int)(Math.random()* str.length() +1);
 			strRandom = strRandom + copyStr.charAt(indexChar);
-			copyStr = copyStr.substring(0,indexChar) + copyStr.substring(indexChar + 1);
+			if(indexChar == copyStr.length()){
+				copyStr = copyStr.substring(0,indexChar);
+			}else{
+				copyStr = copyStr.substring(0,indexChar) + copyStr.substring(indexChar + 1);
+			}
 		}
 		return strRandom;
 	}
